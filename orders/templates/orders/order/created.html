@@ -1,0 +1,17 @@
+{% extends "shop/shop-base.html" %}
+{% load paystack %}
+
+
+{% block shop_content %}
+<h1>Thank you</h1>
+<p>Your order has been successfully completed. Your order number is <strong>{{ order.id }}</strong>.</p>
+<br>
+<hr>
+
+<div class="">
+    Total Price: NGN {{ total_price }}
+    {% paystack_button amount=total_price metadata=order.id email=order.email %}
+</div>
+
+<br>
+{% endblock %}

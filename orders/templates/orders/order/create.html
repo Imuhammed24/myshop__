@@ -1,0 +1,32 @@
+{% extends "shop/shop-base.html" %}
+
+
+{% block shop_content %}
+    <h1>Checkout</h1>
+
+    <div class="order-info">
+        <h3>Your order</h3>
+        <ul>
+            {% for item in cart %}
+                <li>{{ item.quantity }}x {{ item.product.name }} <span>NGN {{ item.total_price }}</span></li>
+            {% endfor %}
+            {% if cart.coupon %}
+                <li> "{{ cart.coupon.code }}" ({{ cart.coupon.discount }}% off)
+                    <span>- NGN {{ cart.get_discount }}</span>
+                </li>
+            {% endif %}
+        </ul>
+
+        {% if cart.coupon %}
+        <p>Total: NGN {{ cart.get_total_price_after_discount }}</p>
+        {% else %}
+        <p>Total: NGN {{ cart.get_total_price }}</p>
+        {% endif %}
+    </div>
+
+    <form action="." method="post" class="order-form">
+        {{ form.as_p }}
+        <p><input type="submit" value="Place order"></p>
+        {% csrf_token %}
+    </form>
+{% endblock %}

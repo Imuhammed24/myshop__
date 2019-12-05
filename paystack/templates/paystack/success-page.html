@@ -1,0 +1,18 @@
+{% extends "shop/shop-base.html" %}
+
+{% block shop_content %}
+
+<div>
+  <h1>Payment Successful</h1>
+</div>
+<div class="">
+    <h4>Hi {{ order.last_name.title }}, Thank you for your order. You will receive your item(s) in three(3) days</h4>
+    <p>Your tracking id is {{ tracking_id }} </p>
+    <p class="mt-0">Delivery address: {{ order.address.title }}</p>
+
+
+<!--<small class="text-muted mt-5">{{ paystate }}</small>-->
+</div>
+
+
+{% endblock %}
